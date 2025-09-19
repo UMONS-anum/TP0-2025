@@ -20,7 +20,7 @@ jobs:
           chmod +x classroom-assistant
 
       - name: Run review bot
-        run: cargo run --release
+        run: ./classroom-assistant
         env:
           ACCESS_TOKEN: ${{ secrets.MACHINE_USER_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
