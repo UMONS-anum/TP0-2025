@@ -1,0 +1,24 @@
+name: Student Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Download the classroom-assistant
+        run: |
+          curl -L -o classroom-assistant https://github.com//UMONS-anum/classroom-assistant/releases/latest/download/classroom-assistant
+          chmod +x student-review-bot
+
+      - name: Run review bot
+        run: cargo run --release
+        env:
+          ACCESS_TOKEN: ${{ secrets.MACHINE_USER_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
