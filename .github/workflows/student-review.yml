@@ -10,16 +10,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Install GitHub CLI
-        run: sudo apt install gh
-      - name: Authenticate GitHub CLI
-        run: echo "${{ secrets.GH_PAT }}" | gh auth login --with-token
       - name: Download classroom-assistant
         run: |
-          gh release download --repo UMONS-anum/classroom-assistant --pattern classroom-assistant
-          chmod +x classroom-assistant
+          curl -L -H "Authorization: token ${{ secrets.GH_PAT }} \
+          -o classroom-assistant \
+          https://github.com/UMONS-anum/classroom-assistant/releases/download/classroom-assistant/classroom-assistant
 
-      - name: Run review bot
+      - name: Run the Classroom Assistant
         run: ./classroom-assistant
         env:
           ACCESS_TOKEN: ${{ secrets.MACHINE_USER_TOKEN }}
