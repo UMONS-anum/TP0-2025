@@ -16,8 +16,7 @@ jobs:
           -o classroom-assistant \
           https://github.com/UMONS-anum/classroom-assistant/releases/download/classroom-assistant/classroom-assistant
 
-
-      - name: Run review bot
+      - name: Run the Classroom Assistant
         run: ./classroom-assistant
         env:
           ACCESS_TOKEN: ${{ secrets.MACHINE_USER_TOKEN }}
