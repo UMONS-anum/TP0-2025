@@ -12,9 +12,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Download classroom-assistant
         run: |
-          REPO="UMONS-anum/classroom-assistant" \
-          ASSET_ID=$(curl -H "Authorization: token ${{ secrets.GH_PAT }}" https://api.github.com/repos/$REPO/releases/classroom-assistant | jq -r ".assets[] | select(.name == \"classroom-assistant\") | .id") \
-          echo "ID $ASSET_ID" && \
+          export REPO="UMONS-anum/classroom-assistant"
+          export ASSET_ID=$(curl -H "Authorization: token ${{ secrets.GH_PAT }}" https://api.github.com/repos/$REPO/releases/classroom-assistant | jq -r ".assets[] | select(.name == \"classroom-assistant\") | .id")
+          echo "ID $ASSET_ID"
           curl -L -H "Authorization: token ${{ secrets.GH_PAT }}" \
             -H "Accept: application/octet-stream" \
             -o classroom-assistant \
