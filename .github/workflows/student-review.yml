@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Download the classroom-assistant
         run: |
-          curl -L -o classroom-assistant https://github.com//UMONS-anum/classroom-assistant/releases/latest/download/classroom-assistant
-          chmod +x student-review-bot
+          curl -L -o classroom-assistant https://github.com//UMONS-anum/classroom-assistant/releases /latest/download/classroom-assistant
+          chmod +x classroom-assistant
 
       - name: Run review bot
         run: cargo run --release
