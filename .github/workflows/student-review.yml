@@ -18,9 +18,11 @@ jobs:
           chmod +x classroom-assistant
 
       - name: Run the Classroom Assistant
-        run: ./classroom-assistant
+        run: |
+          ls -l
+          file classroom-assistant
+          ./classroom-assistant
         env:
-          ACCESS_TOKEN: ${{ secrets.MACHINE_USER_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ACCESS_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
