@@ -15,6 +15,7 @@ jobs:
           curl -L -H "Authorization: token ${{ secrets.GH_PAT }}" \
           -o classroom-assistant \
           https://github.com/UMONS-anum/classroom-assistant/releases/download/classroom-assistant/classroom-assistant
+          chmod +x classroom-assistant
 
       - name: Run the Classroom Assistant
         run: ./classroom-assistant
