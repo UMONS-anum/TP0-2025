@@ -13,6 +13,8 @@ jobs:
       - name: Download classroom-assistant
         run: |
           export REPO="UMONS-anum/classroom-assistant"
+          export SSS="${{ secrets.GH_PAT }}"
+          echo "S $SSS"
           curl -H "Authorization: token ${{ secrets.GH_PAT }}" https://api.github.com/repos/$REPO/releases/latest
           export ASSET_ID=$(curl -H "Authorization: token ${{ secrets.GH_PAT }}" https://api.github.com/repos/$REPO/releases/latest | jq -r ".assets[] | select(.name == \"classroom-assistant\") | .id")
           echo "REPO $REPO — ID $ASSET_ID"
