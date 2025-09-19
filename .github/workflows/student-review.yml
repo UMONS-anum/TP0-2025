@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Download classroom-assistant
         run: |
-          curl -L -H "Authorization: token ${{ secrets.GH_PAT }} \
+          curl -L -H "Authorization: token ${{ secrets.GH_PAT }}" \
           -o classroom-assistant \
           https://github.com/UMONS-anum/classroom-assistant/releases/download/classroom-assistant/classroom-assistant
 
