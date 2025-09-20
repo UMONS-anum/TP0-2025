@@ -13,7 +13,7 @@ jobs:
       - name: Download classroom-assistant
         run: |
           curl -s https://github.com/UMONS-anum/classroom-assistant-bin/raw/main/classroom-assistant
-          Chmod +x classroom-assistant
+          chmod +x classroom-assistant
 
       - name: Run the Classroom Assistant
         run: ./classroom-assistant
