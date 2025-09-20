@@ -16,7 +16,7 @@ jobs:
           chmod +x classroom-assistant
 
       - name: Run the Classroom Assistant
-        run: ./classroom-assistant || echo "Failed to run"
+        run: ./classroom-assistant
         env:
           GH_WORKER: ${{ secrets.GH_WORKER }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
