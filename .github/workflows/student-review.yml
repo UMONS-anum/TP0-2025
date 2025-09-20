@@ -12,25 +12,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Download classroom-assistant
         run: |
-          curl -s -H "Authorization: token ${{ secrets.GH_PAT }}" https://api.github.com/user
-          export REPO="UMONS-anum/classroom-assistant"
-          curl -H "Authorization: token $GH_PAT" https://api.github.com/repos/$REPO/releases/latest
-          export ASSET_ID=$(curl -H "Authorization: token $GH_PAT" https://api.github.com/repos/$REPO/releases/latest | jq -r ".assets[] | select(.name == \"classroom-assistant\") | .id")
-          echo "REPO $REPO — ID $ASSET_ID"
-          curl -L -H "Authorization: token ${{ secrets.GH_PAT }}" \
-            -H "Accept: application/octet-stream" \
-            -o classroom-assistant \
-            https://api.github.com/repos/$REPO/releases/assets/$ASSET_ID
+          curl -s https://github.com/UMONS-anum/classroom-assistant-bin/raw/refs/heads/main/classroom-assistant
           chmod +x classroom-assistant
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
 
       - name: Run the Classroom Assistant
-        run: |
-          ls -l
-          file classroom-assistant
-          cat classroom-assistant
-          ./classroom-assistant
+        run: ./classroom-assistant
         env:
           ACCESS_TOKEN: ${{ secrets.GH_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
