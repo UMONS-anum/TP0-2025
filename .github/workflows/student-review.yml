@@ -1,8 +1,8 @@
 name: Student Code Review
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  pull_request_target:
+    types: [opened, synchronize, reopened]
 
 jobs:
   review:
@@ -18,7 +18,6 @@ jobs:
       - name: Run the Classroom Assistant
         run: ./classroom-assistant
         env:
-          GH_WORKER: ${{ secrets.GH_WORKER }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
