@@ -1,4 +1,4 @@
-name: Student Code Review
+name: Test Student Code
 
 on:
   pull_request_target:
@@ -8,15 +8,17 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout the repository
         uses: actions/checkout@v3
-      - name: Download classroom-assistant
+      - name: Download the Classroom Assistant
         run: |
           curl -L -o classroom-assistant https://github.com/UMONS-anum/classroom-assistant-bin/raw/main/classroom-assistant
           chmod +x classroom-assistant
 
       - name: Run the Classroom Assistant
-        run: ./classroom-assistant
+        run: |
+          ls -l
+          ./classroom-assistant
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
           GITHUB_REPOSITORY: ${{ github.repository }}
