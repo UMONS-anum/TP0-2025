@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+
       - name: Download the Classroom Assistant
         run: |
           curl -L -o classroom-assistant https://github.com/UMONS-anum/classroom-assistant-bin/raw/main/classroom-assistant
